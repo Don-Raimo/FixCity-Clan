@@ -1,6 +1,6 @@
 # 🏛️ Fix My City — Municipal Fault Reporting Platform
 
-> A modern, full-stack municipal issue-tracking system that enables residents to report infrastructure faults (burst pipes, potholes, power outages, broken streetlights) by snapping geotagged photos, automatically routing actionable alerts to local municipal repair crews.
+> A full-stack municipal issue-tracking system that enables residents to report infrastructure faults (burst pipes, potholes, power outages, broken streetlights) by snapping geotagged photos, automatically routing actionable alerts to local municipal repair crews.
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Fix My City** is an intuitive, community-driven civic reporting platform engineered to streamline communication between residents and local government authorities. 
 
-When infrastructure issues arise, residents can log a fault in under 30 seconds. By taking a real-time photo and submitting a report, the app captures precise GPS coordinates (`[longitude, latitude]`) and sends the data to a high-performance **FastAPI** backend. Using MongoDB **`2dsphere` spatial indexing**, reports are mapped to administrative zones and routed directly to the designated repair teams—reducing response times and keeping residents updated through every stage of resolution.
+When infrastructure issues arise, residents can log a fault in under 30 seconds. By taking a real-time photo and submitting a report, the app captures precise GPS coordinates (`[longitude, latitude]`) and sends the data to a fast **Node.js** backend. Using MongoDB **`2dsphere` spatial indexing**, reports are mapped to administrative zones and routed directly to designated repair teams—reducing response times and keeping residents updated through every stage of resolution.
 
 ---
 
@@ -17,7 +17,7 @@ When infrastructure issues arise, residents can log a fault in under 30 seconds.
 - 📸 **Quick Fault Reporting:** Snap a photo of an issue, select a category, and submit in seconds.
 - 📍 **Automatic Geotagging:** High-accuracy location capture using device GPS at the moment of photo capture.
 - 🗺️ **Geospatial Dispatching:** Native MongoDB `2dsphere` index maps faults directly to municipal department zones.
-- ⚡ **Async Background Alerts:** FastAPI background workers queue SMS, email, or push notifications to field crews without delaying user uploads.
+- ⚡ **Async Background Alerts:** Asynchronous background tasks queue SMS, email, or push notifications to field crews without delaying user uploads.
 - 🔐 **Secure Auth:** JWT-based user authentication with bcrypt password hashing.
 - 📊 **Live Ticket Tracking:** Users can track report status in real time (`PENDING` → `IN_PROGRESS` → `RESOLVED`).
 
@@ -28,10 +28,10 @@ When infrastructure issues arise, residents can log a fault in under 30 seconds.
 | Layer | Technology | Description |
 | :--- | :--- | :--- |
 | **Mobile Frontend** | **React Native (Expo)** | Cross-platform iOS and Android mobile app |
-| **Backend API** | **FastAPI (Python)** | Asynchronous RESTful API framework |
-| **Database & ODM** | **MongoDB + Beanie ODM** | NoSQL document database with native GeoJSON indexing |
+| **Backend API** | **Node.js + Express** | Fast, asynchronous JavaScript RESTful API framework |
+| **Database & ODM** | **MongoDB + Mongoose** | NoSQL document database with native GeoJSON indexing |
 | **Hardware Access** | **Expo Camera & Location** | Native camera hardware and GPS access |
-| **Authentication** | **PyJWT + Passlib (bcrypt)** | OAuth2 Bearer token flow & password encryption |
+| **Authentication** | **jsonwebtoken + bcryptjs** | OAuth2 Bearer token flow & password encryption |
 
 ---
 
@@ -40,12 +40,13 @@ When infrastructure issues arise, residents can log a fault in under 30 seconds.
 ```text
 fix-my-city/
 ├── backend/
-│   ├── app/
-│   │   ├── main.py          # FastAPI application entrypoint & routes
-│   │   ├── models.py        # Beanie Document models (User, Report, GeoLocation)
-│   │   ├── security.py      # Password hashing & JWT token validation
-│   │   └── database.py      # MongoDB connection setup
-│   ├── requirements.txt     # Python dependencies
+│   ├── src/
+│   │   ├── controllers/     # Auth and report request handlers
+│   │   ├── models/          # Mongoose models (User, Report, Location)
+│   │   ├── middleware/      # JWT auth middleware & Multer file upload
+│   │   ├── routes/          # Express route definitions
+│   │   └── server.js        # Node.js Express app entrypoint
+│   ├── package.json         # Backend Node dependencies
 │   └── .env.example         # Environment variable template
 │
 └── mobile/
@@ -54,4 +55,4 @@ fix-my-city/
     │   ├── components/      # Custom UI components & Camera controls
     │   └── services/        # API client & Auth context
     ├── App.js               # Main React Native component
-    └── package.json         # Node dependencies
+    └── package.json         # Mobile Node dependencies
