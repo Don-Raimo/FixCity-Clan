@@ -1,4 +1,4 @@
-# 🏛️ FixCity — Municipal Fault Reporting Platform
+# 🏛️ FixCity - Municipal Fault Reporting Platform
 
 > A full-stack municipal issue-tracking system that enables residents to report infrastructure faults (burst pipes, potholes, power outages, broken streetlights) by snapping geotagged photos, automatically routing actionable alerts to local municipal repair crews.
 
