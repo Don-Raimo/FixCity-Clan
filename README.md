@@ -1,4 +1,4 @@
-# 🏛️ Fix My City — Municipal Fault Reporting Platform
+# 🏛️ FixCity — Municipal Fault Reporting Platform
 
 > A full-stack municipal issue-tracking system that enables residents to report infrastructure faults (burst pipes, potholes, power outages, broken streetlights) by snapping geotagged photos, automatically routing actionable alerts to local municipal repair crews.
 
@@ -6,7 +6,7 @@
 
 ## 📖 App Overview
 
-**Fix My City** is an intuitive, community-driven civic reporting platform engineered to streamline communication between residents and local government authorities. 
+**FixCity** is an intuitive, community-driven civic reporting platform engineered to streamline communication between residents and local government authorities. 
 
 When infrastructure issues arise, residents can log a fault in under 30 seconds. By taking a real-time photo and submitting a report, the app captures precise GPS coordinates (`[longitude, latitude]`) and sends the data to a fast **Node.js** backend. Using MongoDB **`2dsphere` spatial indexing**, reports are mapped to administrative zones and routed directly to designated repair teams—reducing response times and keeping residents updated through every stage of resolution.
 
